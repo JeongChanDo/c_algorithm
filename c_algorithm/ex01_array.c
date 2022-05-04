@@ -1,6 +1,7 @@
 #include <stdio.h>
+#include <time.h>
 #define SizeIntArray(arr) sizeof(arr)/sizeof(int)
-
+#define PrintTime() printf("실행 시간 : %f \n", (double)(end - start));
 
 int SumArray(int arr[], int size)
 {
@@ -32,8 +33,31 @@ int BinarySearch(int arr[], int size, int value)
 	return -1;
 }
 
+
+// 무차별대입 브루트 포스 방식으로 확인 시간 복잡도 O(n^2)
+int SmallestPositiveMissingNumber(int arr[], int size)
+{
+	int found;
+	for (int i = 1; i < size + 1; i++)
+	{
+		found = 0;
+		for (int j = 0; j < size; j++)
+		{
+			if (arr[j] == i)
+			{
+				found = 1;
+				break;
+			}
+		}
+		if (found == 0) return i;
+	}
+	return -1;
+}
+
 int main()
 {
+	clock_t start, end;
+
 	int arr1[] = {1, 2, 3, 4, 5};
 	printf("ex1 배열 합 : %d \n", SumArray(arr1, 5));
 	int arr2[] = { 43, 23, 64, 12 };
@@ -45,6 +69,19 @@ int main()
 	printf("ex3 이진 검색 : %d \n", BinarySearch(arr3, SizeIntArray(arr3), 54));
 	printf("ex3 이진 검색 : %d \n", BinarySearch(arr3, SizeIntArray(arr3), 66));
 
+	
+
+	int arr4[2341];
+	for (int i = 0; i < SizeIntArray(arr4); i++)
+	{
+		if (i == 1975) continue;
+		arr4[i] = i;
+	}
+	
+	start = clock();
+	printf("ex4 누락된 가장 작은 양수 - 부루트포스: %d \n ", SmallestPositiveMissingNumber(arr4, SizeIntArray(arr4)));
+	end = clock();
+	PrintTime();
 
 
 }

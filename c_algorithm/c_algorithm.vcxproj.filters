@@ -21,5 +21,8 @@
     <ClCompile Include="ex01_array.c">
       <Filter>소스 파일\01_algorithm_basic</Filter>
     </ClCompile>
+    <ClCompile Include="ex2_recursive.c">
+      <Filter>소스 파일\01_algorithm_basic</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
